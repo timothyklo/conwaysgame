@@ -7,6 +7,11 @@
 
 <body>
 
+	<form action="/runlife" method="post">
+		<input type="hidden" name="world" value={{.}}>
+		<input type="submit" value="Run">
+	</form>
+
 	<ul style="list-style: none;">
 		{{ range $key, $value := . }}
 		<li>{{ $value }}</li>

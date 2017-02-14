@@ -10,6 +10,10 @@ import (
 "strconv"
 )
 
+var world = [][]int{}
+var neighbors = [][]int{}
+var intSized int = 0
+
 // create array of size "size" with random 0 or 1
 func createSet(size int) []int {
 	arr := make([]int, size)
@@ -31,7 +35,7 @@ func createBoard(size int) [][]int {
 
 // get the size from the user
 func getsize(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("method:", r.Method)
+	fmt.Println("getting size:", r.Method)
 	if r.Method == "GET" {
 		t, _ := template.ParseFiles("getsize.gtpl")
 		t.Execute(w, nil)
@@ -45,14 +49,15 @@ func getsize(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 		// create world
-		var world = createBoard(intSized)
-		fmt.Println("whole: \n", world)
-		fmt.Println("world: \n")
+		world = createBoard(intSized)
+		fmt.Println("world: \n", world)
+		fmt.Println("appears: \n")
 		for i := 0; i < intSized; i++ {
-			fmt.Println("\n", world[i])
+			fmt.Println(world[i], "\n")
 		}
+		fmt.Println("intsize: \n", intSized)
 		// create neighbors
-		var neighbors = make([][]int, intSized)
+		neighbors = createBoard(intSized)
 		fmt.Println("neighbors: \n", neighbors)
 		// show on template
 		t, _ := template.ParseFiles("conway.gtpl")
@@ -60,11 +65,32 @@ func getsize(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func runlife(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	fmt.Println("running life \n")
+	// fmt.Println("world: \n", world)
+
+	// logic to populate neighbors
+	for i := 0; i < len(world); i++ {
+		for j :=0; j < len(world[i]); j++ {
+			// fmt.Println(world[i][j])
+			var count = 0
+			
+			neighbors[i][j] = count
+		}
+	  fmt.Println(world[i])
+	}
+	fmt.Println("neighbors: \n", neighbors)
+
+	t, _ := template.ParseFiles("conway.gtpl")
+	t.Execute(w, neighbors)
+}
+
 func main() {
-	http.HandleFunc("/", getsize)
+	http.HandleFunc("/getsize", getsize)
+	http.HandleFunc("/runlife", runlife)
 	err := http.ListenAndServe(":9090", nil) // setting listening port
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
-
