@@ -14,3 +14,5 @@ func ExampleHello() {
         fmt.Println("hello")
         // Output: hello
 }
+
+// test form input must be greater than 0

@@ -18,6 +18,7 @@
 		{{ end }}
 	</ul>
 
-</body>
+	<a href="/getsize">Restart</a>
 
+</body>
 </html>

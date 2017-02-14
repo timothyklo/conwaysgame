@@ -50,15 +50,8 @@ func getsize(w http.ResponseWriter, r *http.Request) {
 		}
 		// create world
 		world = createBoard(intSized)
-		fmt.Println("world: \n", world)
-		fmt.Println("appears: \n")
-		for i := 0; i < intSized; i++ {
-			fmt.Println(world[i], "\n")
-		}
-		fmt.Println("intsize: \n", intSized)
-		// create neighbors
+		// create temporary neighbors
 		neighbors = createBoard(intSized)
-		fmt.Println("neighbors: \n", neighbors)
 		// show on template
 		t, _ := template.ParseFiles("conway.gtpl")
 		t.Execute(w, world)
@@ -67,7 +60,7 @@ func getsize(w http.ResponseWriter, r *http.Request) {
 
 func runlife(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	fmt.Println("running life \n")
+	fmt.Println("running life")
 	// logic to populate neighbors
 	for i := 0; i < len(world); i++ {
 		for j :=0; j < len(world[i]); j++ {
@@ -114,9 +107,7 @@ func runlife(w http.ResponseWriter, r *http.Request) {
 			}
 			neighbors[i][j] = count
 		}
-		fmt.Println(world[i])
 	}
-	fmt.Println("neighbors: \n", neighbors)
 	// go through neighbors and reset world
 	for i := 0; i < len(world); i++ {
 		for j :=0; j < len(world[i]); j++ {
