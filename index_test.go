@@ -11,8 +11,8 @@ func TestTimeConsuming(t *testing.T) {
 }
 
 func ExampleHello() {
-        fmt.Println("hello")
-        // Output: hello
+	fmt.Println("hello")
+	// Output: hello
 }
 
 // test form input must be greater than 0

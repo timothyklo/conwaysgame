@@ -65,12 +65,12 @@ func runlife(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < len(world); i++ {
 		for j :=0; j < len(world[i]); j++ {
 			var count = 0
-			if i>0 && j > 0 {
+			if i > 0 && j > 0 {
 				if world[i-1][j-1] == 1 {
 					count++
 				}
 			}
-			if i>0 {
+			if i > 0 {
 				if world[i-1][j] == 1 {
 					count++
 				}
