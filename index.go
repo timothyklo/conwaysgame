@@ -32,6 +32,10 @@ func main() {
 	// create world
 	world := createBoard(size)
 
+	// create neighbors array to be used to count neighbors
+	neighbors := createBoard(size)
+
 	// shows world
 	fmt.Println(world)
+	fmt.Println(neighbors)
 }
