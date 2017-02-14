@@ -44,11 +44,19 @@ func getsize(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		// create world and neighbors
+		// create world
 		var world = createBoard(intSized)
-		fmt.Println("world: \n", world)
+		fmt.Println("whole: \n", world)
+		fmt.Println("world: \n")
+		for i := 0; i < intSized; i++ {
+			fmt.Println("\n", world[i])
+		}
+		// create neighbors
 		var neighbors = make([][]int, intSized)
 		fmt.Println("neighbors: \n", neighbors)
+		// show on template
+		t, _ := template.ParseFiles("conway.gtpl")
+		t.Execute(w, world)
 	}
 }
 

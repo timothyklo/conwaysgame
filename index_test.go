@@ -9,3 +9,8 @@ func TestTimeConsuming(t *testing.T) {
 		t.Skip("skipping test in short mode.")
 	}
 }
+
+func ExampleHello() {
+        fmt.Println("hello")
+        // Output: hello
+}
