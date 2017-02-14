@@ -26,16 +26,17 @@ func createBoard(size int) [][]int {
 }
 
 func main() {
-	// sets size of world
-	var size int = 39
 
-	// create world
-	world := createBoard(size)
+	fmt.Print("Size of world: ")
+	var input int
+	fmt.Scanln(&input)
 
-	// create neighbors array to be used to count neighbors
-	neighbors := createBoard(size)
+	var world = createBoard(input)
+	var neighbors = make([][]int, input)
 
-	// shows world
-	fmt.Println(world)
-	fmt.Println(neighbors)
+	fmt.Print(world)
+	fmt.Print("\n")
+	fmt.Print(neighbors)
+	fmt.Print("\n")
+
 }
